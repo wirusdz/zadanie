@@ -10,7 +10,7 @@ namespace Soneta.Examples.Zadanie1.Extander
         public string Branche { get; set; }
         public string Commit { get; set; }
         public string Autor { get; set; }
-        public string Data { get; set; }
+        public DateTime Data { get; set; }
         public string Opis { get; set; }
     }
 }

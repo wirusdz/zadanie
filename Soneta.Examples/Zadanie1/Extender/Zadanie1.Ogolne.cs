@@ -52,25 +52,6 @@ namespace Soneta.Examples.Zadanie1.Extender
                             Branche="master",
                             Commit = "0000000000000000000",
                             Autor = "Wojciech Dziedzic",
-                            Data = "01.05.2018",
-                            Opis = "Test 1"
-                        }
-                    },
-                    {
-                        "1", new PolaListyComitow {
-                            Branche="master",
-                            Commit = "111111111111111111111",
-                            Autor = "Wojciech Dziedzic",
-                            Data = "01.05.2018",
-                            Opis = "Test 1"
-                        }
-                    },
-                    {
-                        "2", new PolaListyComitow {
-                            Branche="master",
-                            Commit = "22222222222222222",
-                            Autor = "Wojciech Dziedzic",
-                            Data = "01.05.2018",
                             Opis = "Test 1"
                         }
                     }

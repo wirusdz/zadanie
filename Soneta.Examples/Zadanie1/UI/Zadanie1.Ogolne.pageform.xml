@@ -6,9 +6,9 @@
 				<Stack Width="200" Height="*">
 					<Grid EditValue="{KursyWalut}" Width="220" Height="*">
 						<Field CaptionHtml="Gałąź" Width="10" EditValue="{Branche}" />
-						<Field CaptionHtml="Commit" Width="20" EditValue="{Commit}" />
-						<Field CaptionHtml="Autor" Width="15" EditValue="{Autor}" />
-						<Field CaptionHtml="Data" Width="8" Class="RightAlign" EditValue="{Data}" />
+						<Field CaptionHtml="Commit" Width="40" EditValue="{Commit}" />
+						<Field CaptionHtml="Autor" Width="20" EditValue="{Autor}" />
+						<Field CaptionHtml="Data" Width="19" Class="RightAlign" EditValue="{Data}" />
 						<Field CaptionHtml="Opis" Width="100" Class="RightAlign" EditValue="{Opis}" />
 					</Grid>
 				</Stack>

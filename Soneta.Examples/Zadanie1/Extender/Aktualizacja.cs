@@ -21,7 +21,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                 YesHandler = () =>
                 {
                     // Wczytujemy aktualne kursy 
-                    GetCommits();
+                    LoadList();
 
                     // Wymuszamy odświeżenie listy 
                     Context.Session.InvokeChanged();
@@ -29,26 +29,5 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
             };
         }
-
-        private void GetCommits()
-        {
-            _ListCommits.Clear();
-            CMDCommand cmd = new CMDCommand();
-            cmd.Command = "git fetch origin";
-            cmd.Run();
-            _ListCommits = new SortedDictionary<string, PolaListyComitow> {
-                    {
-                        "9", new PolaListyComitow {
-                            Branche="master",
-                            Commit = "9999",
-                            Autor = "Wojciech Dziedzic",
-                            Data = "01.05.2018",
-                            Opis = cmd.GetText
-                        }
-                    }
-                };
-
-        }
-
     }
 }

@@ -37,43 +37,44 @@
   <ItemGroup>
     <Reference Include="Soneta.Business, Version=10.5.5281.24499, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Business.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Business.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.Business.UI, Version=10.5.5281.24500, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Business.UI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Business.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.Core, Version=10.5.0.15202, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.CRM, Version=10.5.0.15205, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.CRM.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.CRM.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.Handel, Version=10.5.0.28046, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Handel.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Handel.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.Kasa, Version=10.5.0.15204, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Kasa.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Kasa.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Soneta.Types, Version=10.5.5281.24497, Culture=neutral, PublicKeyToken=a19fc6236fd34393, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\enovadev\bin\Debug\Soneta.Types.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Soneta\enova365 14.4.6710.10644\Soneta.Types.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -114,6 +115,7 @@
     <Compile Include="Zadanie1\Extender\CMDCommand.cs" />
     <Compile Include="Zadanie1\Extender\Menu.cs" />
     <Compile Include="Zadanie1\Extender\PolaListyComitow.cs" />
+    <Compile Include="Zadanie1\Extender\PrzetwarzanieListy.cs" />
     <Compile Include="Zadanie1\Extender\Zadanie1.Ogolne.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +157,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Zadanie1\UI\Zadanie1.Ogolne.pageform.xml" />
+    <EmbeddedResource Include="Zadanie1\UI\Zadanie1.Ogolne.pageform.xml" />
     <EmbeddedResource Include="Example9\UI\DynamicFormExtender.Ogolne.pageform.xml" />
     <EmbeddedResource Include="Example2\UI\Kontrahent.KontrahentNewOgolne.pageform.en.xml">
       <SubType>Designer</SubType>

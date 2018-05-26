@@ -123,4 +123,10 @@
   <data name="Str_MsgTitle" xml:space="preserve">
     <value>Aktualizowanie kursów walut w formie XML</value>
   </data>
+  <data name="St_MsgTextZadanie" xml:space="preserve">
+    <value>Załadować aktualną lisę commits?</value>
+  </data>
+  <data name="St_MsgTitleZadanie" xml:space="preserve">
+    <value>Aktualizacja</value>
+  </data>
 </root>
