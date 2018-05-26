@@ -7,6 +7,7 @@ namespace Soneta.Examples.Zadanie1.Extander
 {
     public class PolaListyComitow
     {
+        public string Merge { get; set; }
         public string Branche { get; set; }
         public string Commit { get; set; }
         public string Autor { get; set; }

@@ -36,6 +36,11 @@ namespace Soneta.Examples.Zadanie1.Extender
                         _ListCommits.Add(_commit, new PolaListyComitow { Commit = _commit });
                         continue;
                     }
+                    if (s.Contains("Merge:") & s[0] == 'M')
+                    {
+                        _ListCommits[_commit].Merge = s.Split(new char[] { ':' })[1].TrimStart().TrimEnd();
+                        continue;
+                    }
                     if (s.Contains("Author:") & s[0] == 'A')
                     {
                         string[] elementy = s.Split(new char[] { ' ' });
