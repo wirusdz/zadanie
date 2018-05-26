@@ -110,6 +110,11 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utils\Tools.cs" />
+    <Compile Include="Zadanie1\Extender\Aktualizacja.cs" />
+    <Compile Include="Zadanie1\Extender\CMDCommand.cs" />
+    <Compile Include="Zadanie1\Extender\Menu.cs" />
+    <Compile Include="Zadanie1\Extender\PolaListyComitow.cs" />
+    <Compile Include="Zadanie1\Extender\Zadanie1.Ogolne.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Example10\README.md" />
@@ -150,6 +155,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Zadanie1\UI\Zadanie1.Ogolne.pageform.xml" />
     <EmbeddedResource Include="Example9\UI\DynamicFormExtender.Ogolne.pageform.xml" />
     <EmbeddedResource Include="Example2\UI\Kontrahent.KontrahentNewOgolne.pageform.en.xml">
       <SubType>Designer</SubType>
