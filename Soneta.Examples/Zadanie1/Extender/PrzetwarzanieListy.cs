@@ -30,7 +30,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     if (s.Trim() == string.Empty) continue;
                     if (s.Contains("commit") & s[0] == 'c')
                     {
-                        _commit = s.Split(new char[] { ' ' })[1];
+                        _commit = _branch + s.Split(new char[] { ' ' })[1];
                         _ListCommits.Add(_commit, new PolaListyComitow
                         {
                             Aktywny = _aktywny,
@@ -69,19 +69,20 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new System.Exception("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString());
                 }
         }
         public List<PolaListyBranches> GetBranches(string _text)
         {
             List<PolaListyBranches> _lista = new List<PolaListyBranches>();
 
-            char _aktywny = '\0';
             string _nazwa;
 
             foreach (string s in _text.Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
                 try
                 {
+                    char _aktywny = '\0';
                     if (s.Contains("*"))
                     {
                         _aktywny = '*';
@@ -99,7 +100,8 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Błąd odczytu listy branches\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // MessageBox.Show("Błąd odczytu listy branches\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new System.Exception("Błąd odczytu listy branches\n\n" + ex.ToString());
                 }
 
             return _lista;

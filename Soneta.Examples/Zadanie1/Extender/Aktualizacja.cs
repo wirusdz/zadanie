@@ -25,6 +25,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     try
                     {
                         _ListCommits.Clear();
+                        _akt.Aktywny = '\0';
                         foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
                         {
                             LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
