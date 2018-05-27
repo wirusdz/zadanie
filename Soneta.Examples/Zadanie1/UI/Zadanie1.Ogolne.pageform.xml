@@ -5,6 +5,7 @@
 			<Row>
 				<Stack Width="200" Height="*">
 					<Grid EditValue="{KursyWalut}" Width="220" Height="*">
+						<Field CaptionHtml="Aktywne" Width="7" EditValue="{Aktywny}" />
 						<Field CaptionHtml="Gałąź" Width="10" EditValue="{Branche}" />
 						<Field CaptionHtml="Merge" Width="10" EditValue="{Merge}" />
 						<Field CaptionHtml="Commit" Width="40" EditValue="{Commit}" />

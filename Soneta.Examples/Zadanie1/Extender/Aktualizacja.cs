@@ -20,8 +20,27 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 YesHandler = () =>
                 {
-                    // Wczytujemy aktualne kursy 
-                    LoadList();
+                    // Wczytujemy listę commitów
+                    PolaListyBranches _akt = new PolaListyBranches();
+                    try
+                    {
+                        _ListCommits.Clear();
+                        foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
+                        {
+                            LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
+                            if (br.Aktywny == '*') _akt.Branche = br.Branche;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        //RunGitCommand(GitReset);
+                        RunGitCommand(GitsetBranche + _akt.Branche);
+                    }
+
 
                     // Wymuszamy odświeżenie listy 
                     Context.Session.InvokeChanged();

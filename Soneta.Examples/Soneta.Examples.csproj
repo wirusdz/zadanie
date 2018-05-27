@@ -116,6 +116,7 @@
     <Compile Include="Zadanie1\Extender\Menu.cs" />
     <Compile Include="Zadanie1\Extender\PolaListyComitow.cs" />
     <Compile Include="Zadanie1\Extender\PrzetwarzanieListy.cs" />
+    <Compile Include="Zadanie1\Extender\Stale.cs" />
     <Compile Include="Zadanie1\Extender\Zadanie1.Ogolne.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,17 +13,15 @@ namespace Soneta.Examples.Zadanie1.Extender
 {
     public partial class Zadanie1
     {
-        private string GetCommits()
+        public string RunGitCommand(string command)
         {
             CMDCommand cmd = new CMDCommand();
-            cmd.Command = "git log HEAD --stat --date=format:\"%Y-%m-%d %H:%M:%S\"";
+            cmd.Command = command;
             cmd.Run();
             return cmd.GetText;
         }
-        public void LoadList()
+        public void LoadList(char _aktywny, string _branch, string _text)
         {
-            _ListCommits.Clear();
-            string _text = GetCommits();
             string _commit = string.Empty;
 
             foreach (string s in _text.Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
@@ -33,7 +31,12 @@ namespace Soneta.Examples.Zadanie1.Extender
                     if (s.Contains("commit") & s[0] == 'c')
                     {
                         _commit = s.Split(new char[] { ' ' })[1];
-                        _ListCommits.Add(_commit, new PolaListyComitow { Commit = _commit });
+                        _ListCommits.Add(_commit, new PolaListyComitow
+                        {
+                            Aktywny = _aktywny,
+                            Branche = _branch,
+                            Commit = _commit
+                        });
                         continue;
                     }
                     if (s.Contains("Merge:") & s[0] == 'M')
@@ -68,6 +71,38 @@ namespace Soneta.Examples.Zadanie1.Extender
                 {
                     MessageBox.Show("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+        }
+        public List<PolaListyBranches> GetBranches(string _text)
+        {
+            List<PolaListyBranches> _lista = new List<PolaListyBranches>();
+
+            char _aktywny = '\0';
+            string _nazwa;
+
+            foreach (string s in _text.Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
+                try
+                {
+                    if (s.Contains("*"))
+                    {
+                        _aktywny = '*';
+                        _nazwa = s.Split(new char[] { ' ' })[1];
+                    }
+                    else
+                    {
+                        _nazwa = s.Trim();
+                    }
+                    _lista.Add(new PolaListyBranches()
+                    {
+                        Aktywny = _aktywny,
+                        Branche = _nazwa
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Błąd odczytu listy branches\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            return _lista;
         }
     }
 }
