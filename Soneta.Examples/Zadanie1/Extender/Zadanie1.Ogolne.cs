@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Soneta.Business;
 using Soneta.Examples.Zadanie1.Extander;
@@ -39,16 +40,41 @@ namespace Soneta.Examples.Zadanie1.Extender
         #region Property dla formularza
 
         private SortedDictionary<string, PolaListyComitow> _ListCommits = new SortedDictionary<string, PolaListyComitow>();
-        private string GitWorkDir;
 
         public IEnumerable<PolaListyComitow> ListaComitow
         {
             get
             {
+                WczytanieListyCommitow();
                 return _ListCommits.Values.ToArray();
             }
         }
 
+        public void WczytanieListyCommitow()
+        {
+            PolaListyBranches _akt = new PolaListyBranches();
+            try
+            {
+                _ListCommits.Clear();
+                _akt.Aktywny = '\0';
+                foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
+                {
+                    if (br.Aktywny != '*') RunGitCommand(GitSetBranche + br.Branche);
+                    LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
+                    if (br.Aktywny == '*') _akt.Branche = br.Branche;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new System.Exception(ex.ToString());
+            }
+            finally
+            {
+                //RunGitCommand(GitReset);
+                RunGitCommand(GitSetBranche + _akt.Branche);
+            }
+
+        }
         #endregion Property dla formularza
     }
 

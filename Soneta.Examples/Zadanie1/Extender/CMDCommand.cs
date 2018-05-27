@@ -35,22 +35,21 @@ namespace Soneta.Examples.Zadanie1.Extander
 
             proc1.UseShellExecute = false;
 
-            proc1.WorkingDirectory = _WorkDir; // @"C:\Users\wdziedzic\Documents\Visual Studio 2015\Projects\t3s\GIT\t3s4.1.1";
+            proc1.WorkingDirectory = _WorkDir;
 
-            proc1.FileName = exe; // @"git";
+            proc1.FileName = exe;
             proc1.Arguments = "/c " + _command;
             proc1.CreateNoWindow = true;
             proc1.RedirectStandardOutput = true;
             proc1.RedirectStandardError = true;
-            proc1.StandardOutputEncoding = Encoding.UTF8; // .GetEncoding(1250);// Encoding.Unicode;// BigEndianUnicode;
+            proc1.StandardOutputEncoding = Encoding.UTF8;
             p.StartInfo = proc1;
             p = Process.Start(proc1);
-            //p.WaitForExit();
-            //StreamReader myStreamReader = p.StandardOutput;
             _outtext = p.StandardOutput.ReadToEnd();
 
-            //Encoding En = p.StandardOutput.CurrentEncoding;
             _outeerror = p.StandardError.ReadToEnd();
+            //if (_outeerror != string.Empty)
+            //    throw new System.Exception(_outeerror);
             return _outeerror;
         }
     }
