@@ -18,7 +18,7 @@ namespace Soneta.Examples.Zadanie1.Extender
         //Lista gałęzi    * aktywna
         const string GitGetBranches = "git branch";
         const string GitReset = "git reset -q --hard HEAD";
-        const string GitsetBranche = "git checkout ";
+        const string GitSetBranche = "git checkout ";
 
     }
 }

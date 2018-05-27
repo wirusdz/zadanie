@@ -28,6 +28,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                         _akt.Aktywny = '\0';
                         foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
                         {
+                            if (br.Aktywny != '*') RunGitCommand(GitSetBranche + br.Branche);
                             LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
                             if (br.Aktywny == '*') _akt.Branche = br.Branche;
                         }
@@ -39,7 +40,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     finally
                     {
                         //RunGitCommand(GitReset);
-                        RunGitCommand(GitsetBranche + _akt.Branche);
+                        RunGitCommand(GitSetBranche + _akt.Branche);
                     }
 
 
