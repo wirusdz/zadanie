@@ -4,7 +4,7 @@
 		<Group CaptionHtml="Zadanie rekrutacyjne.">
 			<Row>
 				<Stack Width="200" Height="*">
-					<Grid EditValue="{KursyWalut}" Width="220" Height="*">
+					<Grid EditValue="{ListaComitow}" Width="220" Height="*">
 						<Field CaptionHtml="Aktywne" Width="5" EditValue="{Aktywny}" />
 						<Field CaptionHtml="Gałąź" Width="10" EditValue="{Branche}" />
 						<Field CaptionHtml="Merge" Width="10" EditValue="{Merge}" />
@@ -19,7 +19,13 @@
 					<Command CaptionHtml="Aktualizuj z NBP" MethodName="Aktualizuj" Visibility="{IsVivibleNbp}"/>
 					<Command CaptionHtml="Pobierz xml" MethodName="PobierzXml"/>
 				</Stack>
+				<Stack Width="*">
+					<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}" IsReadOnly="false"/>
+				</Stack>
 			</Row>
+		</Group>
+		<Group CaptionHtml="Zadanie rekrutacyjne">
+			<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}"/>
 		</Group>
 	</Page>
 </DataForm>

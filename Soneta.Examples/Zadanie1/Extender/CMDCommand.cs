@@ -25,7 +25,6 @@ namespace Soneta.Examples.Zadanie1.Extander
         }
         public CMDCommand(string WorkDir, string command)
         {
-            _WorkDir = @"C:\Users\wojtek\source\repos\enova365\Examples";
             _WorkDir = WorkDir;
             _command = command;
         }

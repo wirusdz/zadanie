@@ -38,24 +38,13 @@ namespace Soneta.Examples.Zadanie1.Extender
 
         #region Property dla formularza
 
-        private SortedDictionary<string, PolaListyComitow> _ListCommits;
-        public IEnumerable<PolaListyComitow> KursyWalut
+        private SortedDictionary<string, PolaListyComitow> _ListCommits = new SortedDictionary<string, PolaListyComitow>();
+        private string GitWorkDir;
+
+        public IEnumerable<PolaListyComitow> ListaComitow
         {
             get
             {
-                if (_ListCommits != null) return
-                    _ListCommits.Values.ToArray();
-
-                _ListCommits = new SortedDictionary<string, PolaListyComitow> {
-                    {
-                        "0", new PolaListyComitow {
-                            Branche="master",
-                            Commit = "0000000000000000000",
-                            Autor = "Wojciech Dziedzic",
-                            Opis = "Test 1"
-                        }
-                    }
-                };
                 return _ListCommits.Values.ToArray();
             }
         }
