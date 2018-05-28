@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 
-namespace Soneta.Examples.Zadanie1.Extander
+namespace Soneta.Examples.Zadanie1.Extender
 {
     public class CMDCommand
     {

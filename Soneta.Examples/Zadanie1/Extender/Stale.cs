@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Soneta.Business;
 using Soneta.Business.UI;
-using Soneta.Examples.Zadanie1.Extander;
+using Soneta.Examples.Zadanie1.Extender;
 using Soneta.Examples.Example3.Extender;
 using Soneta.Tools;
 

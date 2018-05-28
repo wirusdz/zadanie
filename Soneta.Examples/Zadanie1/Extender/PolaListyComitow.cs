@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Soneta.Examples.Zadanie1.Extander
+namespace Soneta.Examples.Zadanie1.Extender
 {
     public class PolaListyComitow
     {

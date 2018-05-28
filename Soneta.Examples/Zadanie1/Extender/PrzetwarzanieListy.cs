@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Soneta.Business;
 using Soneta.Business.UI;
-using Soneta.Examples.Zadanie1.Extander;
+using Soneta.Examples.Zadanie1.Extender;
 using Soneta.Examples.Example3.Extender;
 using Soneta.Tools;
 
@@ -80,6 +80,8 @@ namespace Soneta.Examples.Zadanie1.Extender
         }
         public List<PolaListyBranches> GetBranches(string _text)
         {
+            MessageBox.Show("Wartość _text:\n" + _text, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             List<PolaListyBranches> _lista = new List<PolaListyBranches>();
 
             string _nazwa;
@@ -97,6 +99,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     {
                         _nazwa = s.Trim();
                     }
+                    MessageBox.Show("Br aktywny " + _aktywny.ToString() + " | nazwa " + _nazwa, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _lista.Add(new PolaListyBranches()
                     {
                         Aktywny = _aktywny,
@@ -119,7 +122,7 @@ namespace Soneta.Examples.Zadanie1.Extender
             //        select grupa.FirstOrDefault();
 
             var c = from l in _ListCommits
-                    //group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
+                        //group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
                     group l by new { l.Value.Autor, l.Value.Data }
                     into g
                     select g.FirstOrDefault();

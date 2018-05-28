@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Soneta.Business;
-using Soneta.Examples.Zadanie1.Extander;
+using System.Windows.Forms;
+using Soneta.Examples.Zadanie1.Extender;
 //using Soneta.Examples.Example3.Extender;
 
 namespace Soneta.Examples.Zadanie1.Extender
@@ -60,6 +61,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                 _akt.Aktywny = '\0';
                 foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
                 {
+                    MessageBox.Show("Aktywny " + br.Aktywny.ToString()+"\nBranche "+br.Branche, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (br.Aktywny != '*') RunGitCommand(GitSetBranche + br.Branche);
                     LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
                     if (br.Aktywny == '*') _akt.Branche = br.Branche;
