@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Linq;
 using Soneta.Business;
 using Soneta.Business.UI;
 using Soneta.Examples.Zadanie1.Extander;
@@ -15,13 +16,14 @@ namespace Soneta.Examples.Zadanie1.Extender
     {
         public string RunGitCommand(string command)
         {
-            CMDCommand cmd = new CMDCommand(GitWorkDir,command);
+            CMDCommand cmd = new CMDCommand(GitWorkDir, command);
             cmd.Run();
             return cmd.GetText;
         }
         public void LoadList(char _aktywny, string _branch, string _text)
         {
             string _commit = string.Empty;
+            SortedDictionary<string, PolaListyComitow> _lista = new SortedDictionary<string, PolaListyComitow>();
 
             foreach (string s in _text.Split("\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries))
                 try
@@ -30,7 +32,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     if (s.Contains("commit") & s[0] == 'c')
                     {
                         _commit = _branch + s.Split(new char[] { ' ' })[1];
-                        _ListCommits.Add(_commit, new PolaListyComitow
+                        _lista.Add(_commit, new PolaListyComitow
                         {
                             Aktywny = _aktywny,
                             Branche = _branch,
@@ -40,20 +42,20 @@ namespace Soneta.Examples.Zadanie1.Extender
                     }
                     if (s.Contains("Merge:") & s[0] == 'M')
                     {
-                        _ListCommits[_commit].Merge = s.Split(new char[] { ':' })[1].TrimStart().TrimEnd();
+                        _lista[_commit].Merge = s.Split(new char[] { ':' })[1].TrimStart().TrimEnd();
                         continue;
                     }
                     if (s.Contains("Author:") & s[0] == 'A')
                     {
                         string[] elementy = s.Split(new char[] { ' ' });
-                        _ListCommits[_commit].Autor += elementy[1];
+                        _lista[_commit].Autor += elementy[1];
                         if (!elementy[2].Contains("<") & !elementy[2].Contains(">"))
-                            _ListCommits[_commit].Autor += " " + elementy[2];
+                            _lista[_commit].Autor += " " + elementy[2];
                         continue;
                     }
                     if (s.Contains("Date:") & s[0] == 'D')
                     {
-                        _ListCommits[_commit].Data = DateTime.ParseExact(s.Replace("Date:", string.Empty).TrimStart(), "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                        _lista[_commit].Data = DateTime.ParseExact(s.Replace("Date:", string.Empty).TrimStart(), "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                         continue;
                     }
                     if (s.Contains("Merge pull request"))
@@ -64,13 +66,17 @@ namespace Soneta.Examples.Zadanie1.Extender
                     if (s.Contains("file") & (s.Contains("(+)") | s.Contains("(-)")))
                         continue;
                     if (!s.Contains("git-svn-id:") & !s.Contains("cherry picked from commit") & !s.Contains("Signed-off-by:"))
-                        _ListCommits[_commit].Opis = s.TrimStart().TrimEnd();
+                        _lista[_commit].Opis = s.TrimStart().TrimEnd();
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw new System.Exception("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString());
                 }
+            foreach (KeyValuePair<string, PolaListyComitow> l in _lista.OrderBy(l => l.Value.Data))
+            {
+                _ListCommits.Add(l.Key, l.Value);
+            }
         }
         public List<PolaListyBranches> GetBranches(string _text)
         {
@@ -104,6 +110,36 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
 
             return _lista;
+        }
+        public void FiltrAutorList(string Autor)
+        {
+            //var c = from l in _ListCommits
+            //        group l by new { l.Value.Autor, l.Value.Data }
+            //        into grupa
+            //        select grupa.FirstOrDefault();
+
+            var c = from l in _ListCommits
+                    //group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
+                    group l by new { l.Value.Autor, l.Value.Data }
+                    into g
+                    select g.FirstOrDefault();
+
+
+
+            SortedDictionary<string, PolaListyComitow> _listtmp = new SortedDictionary<string, PolaListyComitow>();
+            //foreach (KeyValuePair<string, PolaListyComitow> l in _ListCommits.Where(c => c.Value.Autor == Autor))
+            foreach (KeyValuePair<string, PolaListyComitow> l in c)
+            {
+                l.Value.Ilosc = _ListCommits.Where(w => w.Value.Autor == l.Value.Autor & w.Value.Data == l.Value.Data).Count();
+                _listtmp.Add(l.Key, l.Value);
+            }
+            //MessageBox.Show("_listtmp\n\n" + _listtmp.Count.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            _ListCommits.Clear();
+            //MessageBox.Show("_ListCommits.Clear()\n\n" + _listtmp.Count.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            foreach (KeyValuePair<string, PolaListyComitow> l in _listtmp)
+            {
+                _ListCommits.Add(l.Key, l.Value);
+            }
         }
     }
 }

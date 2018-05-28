@@ -29,5 +29,19 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
             };
         }
+        public MessageBoxInformation LoadCommitsWhere()
+        {
+            return new MessageBoxInformation(Strings.St_MsgTitleZadanie, Strings.St_MsgTextZadanie)
+            {
+                YesHandler = () =>
+                {
+                    //_ListCommits.Clear();
+                    FiltrAutorList("wdziedzic");
+                    // Wymuszamy odświeżenie listy 
+                    Context.Session.InvokeChanged();
+                    return null;
+                }
+            };
+        }
     }
 }

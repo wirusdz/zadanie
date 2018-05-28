@@ -10,13 +10,14 @@
 						<Field CaptionHtml="Merge" Width="10" EditValue="{Merge}" />
 						<Field CaptionHtml="Commit" Width="40" EditValue="{Commit}" />
 						<Field CaptionHtml="Autor" Width="20" EditValue="{Autor}" />
-						<Field CaptionHtml="Data" Width="19" Class="RightAlign" EditValue="{Data}" />
-						<Field CaptionHtml="Opis" Width="100" Class="RightAlign" EditValue="{Opis}" />
+						<Field CaptionHtml="Data" Width="19" EditValue="{Data}" />
+						<Field CaptionHtml="Ilość" Width="19" EditValue="{Ilosc}" />
+						<Field CaptionHtml="Opis" Width="100" EditValue="{Opis}" />
 					</Grid>
 				</Stack>
 				<Stack Width="*">
 					<Command CaptionHtml="Załaduj commit's" MethodName="LoadCommits"/>
-					<Command CaptionHtml="Aktualizuj z NBP" MethodName="Aktualizuj" Visibility="{IsVivibleNbp}"/>
+					<Command CaptionHtml="Filtruj autora" MethodName="LoadCommitsWhere"/>
 					<Command CaptionHtml="Pobierz xml" MethodName="PobierzXml"/>
 				</Stack>
 				<Stack Width="*">
