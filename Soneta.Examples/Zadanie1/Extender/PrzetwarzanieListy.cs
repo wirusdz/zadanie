@@ -111,8 +111,6 @@ namespace Soneta.Examples.Zadanie1.Extender
         }
         public void FiltrCommitowNaDzien()
         {
-            ListaPelna = false;
-
             var c = from l in _ListCommits
                     group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
                     into g
@@ -129,12 +127,12 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 _ListCommits.Add(l.Key, l.Value);
             }
+            _ListaPelna = false;
+            _WszystkiePola = false;
         }
 
         public void FiltrSrednioCommitowDziennie()
         {
-            ListaPelna = false;
-
             var c = from l in _ListCommits
                     group l by new { l.Value.Branche, l.Value.Autor } into g
                     select g.FirstOrDefault();
@@ -157,7 +155,8 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 _ListCommits.Add(l.Key, l.Value);
             }
-
+            _ListaPelna = false;
+            _WszystkiePola = false;
         }
     }
 }

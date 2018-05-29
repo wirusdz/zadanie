@@ -14,7 +14,8 @@ namespace Soneta.Examples.Zadanie1.Extender
         [Context(Required = true)]
         public Session Session { get; set; }
 
-        private bool ListaPelna = false;
+        private bool _ListaPelna = false;
+        private bool _WszystkiePola = true;
 
         private string _GitWorkDir = @"C:\Users\wojtek\source\repos\enova365_testy\Examples";
 
@@ -26,7 +27,7 @@ namespace Soneta.Examples.Zadanie1.Extender
         {
             get
             {
-                return ListaPelna;
+                return _ListaPelna;
             }
         }
 
@@ -36,10 +37,19 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 return _GitWorkDir;
             }
-            set { _GitWorkDir = value;
+            set
+            {
+                _GitWorkDir = value;
             }
         }
 
+        public bool IsWszystkiePola
+        {
+            get
+            {
+                return _WszystkiePola;
+            }
+        }
         public IEnumerable<PolaListyComitow> ListaComitow
         {
             get
@@ -64,12 +74,13 @@ namespace Soneta.Examples.Zadanie1.Extender
             }
             catch (Exception ex)
             {
-                ListaPelna = false;
+                _ListaPelna = false;
                 throw new System.Exception(ex.ToString());
             }
             finally
             {
-                ListaPelna = true;
+                _ListaPelna = true;
+                _WszystkiePola = true;
                 //RunGitCommand(GitReset);
                 RunGitCommand(GitSetBranche + _akt.Branche);
             }

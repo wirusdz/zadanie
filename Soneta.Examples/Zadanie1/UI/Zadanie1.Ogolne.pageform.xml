@@ -5,14 +5,14 @@
 			<Row>
 				<Stack Width="200" Height="*">
 					<Grid EditValue="{ListaComitow}" Width="220" Height="*">
-						<Field CaptionHtml="Aktywne" Width="5" EditValue="{Aktywny}" />
+						<!--<Field CaptionHtml="Aktywne" Width="5" EditValue="{Aktywny}" Visibility="{IsWszystkiePola}"/>-->
 						<Field CaptionHtml="Gałąź" Width="10" EditValue="{Branche}" />
-						<Field CaptionHtml="Merge" Width="10" EditValue="{Merge}" />
-						<Field CaptionHtml="Commit" Width="40" EditValue="{Commit}" />
+						<!--<Field CaptionHtml="Merge" Width="10" EditValue="{Merge}" Visibility="{IsWszystkiePola}"/>
+						<Field CaptionHtml="Commit" Width="40" EditValue="{Commit}" Visibility="{IsWszystkiePola}"/>-->
 						<Field CaptionHtml="Autor" Width="20" EditValue="{Autor}" />
 						<Field CaptionHtml="Data" Width="19" EditValue="{Data}" />
 						<Field CaptionHtml="Ilość" Width="19" EditValue="{Ilosc}" />
-						<Field CaptionHtml="Opis" Width="100" EditValue="{Opis}" />
+						<!--<Field CaptionHtml="Opis" Width="100" EditValue="{Opis}" Visibility="{IsWszystkiePola}"/>-->
 					</Grid>
 				</Stack>
 				<Stack Width="*">
