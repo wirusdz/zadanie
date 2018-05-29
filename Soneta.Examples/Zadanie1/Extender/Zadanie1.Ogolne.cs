@@ -14,7 +14,9 @@ namespace Soneta.Examples.Zadanie1.Extender
         [Context(Required = true)]
         public Session Session { get; set; }
 
-        private bool ListaPelna = true;
+        private bool ListaPelna = false;
+
+        private string _GitWorkDir = @"C:\Users\wojtek\source\repos\enova365_testy\Examples";
 
         #region Property dla formularza
 
@@ -27,6 +29,17 @@ namespace Soneta.Examples.Zadanie1.Extender
                 return ListaPelna;
             }
         }
+
+        public string GitWorkDirEdit
+        {
+            get
+            {
+                return _GitWorkDir;
+            }
+            set { _GitWorkDir = value;
+            }
+        }
+
         public IEnumerable<PolaListyComitow> ListaComitow
         {
             get

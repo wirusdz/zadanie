@@ -23,7 +23,7 @@
 			</Row>
 		</Group>
 		<Group CaptionHtml="Zadanie rekrutacyjne">
-			<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}" IsReadOnly="false"/>
+			<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDirEdit}" IsReadOnly="false"/>
 		</Group>
 	</Page>
 </DataForm>

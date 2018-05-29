@@ -16,7 +16,7 @@ namespace Soneta.Examples.Zadanie1.Extender
     {
         public string RunGitCommand(string command)
         {
-            CMDCommand cmd = new CMDCommand(GitWorkDir, command);
+            CMDCommand cmd = new CMDCommand(GitWorkDirEdit, command);
             cmd.Run();
             return cmd.GetText;
         }
