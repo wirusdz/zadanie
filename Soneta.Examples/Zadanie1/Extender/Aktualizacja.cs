@@ -1,13 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Xml;
-using System.Collections.Generic;
-using Soneta.Business;
+﻿using Soneta.Business;
 using Soneta.Business.UI;
-using Soneta.Examples.Zadanie1.Extender;
-using Soneta.Examples.Example3.Extender;
-using Soneta.Tools;
+
 
 namespace Soneta.Examples.Zadanie1.Extender
 {
@@ -35,7 +28,6 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 YesHandler = () =>
                 {
-                    //_ListCommits.Clear();
                     FiltrCommitowNaDzien();
                     // Wymuszamy odświeżenie listy 
                     Context.Session.InvokeChanged();
@@ -49,7 +41,6 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 YesHandler = () =>
                 {
-                    //_ListCommits.Clear();
                     FiltrSrednioCommitowDziennie();
                     // Wymuszamy odświeżenie listy 
                     Context.Session.InvokeChanged();

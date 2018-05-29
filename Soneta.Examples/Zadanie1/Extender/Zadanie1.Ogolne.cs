@@ -44,8 +44,6 @@ namespace Soneta.Examples.Zadanie1.Extender
         {
             get
             {
-                //WczytanieListyCommitow();
-                //FiltrAutorList("wdziedzic");
                 return _ListCommits.Values.ToArray();
             }
         }

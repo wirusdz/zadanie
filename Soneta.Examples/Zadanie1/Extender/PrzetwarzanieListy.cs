@@ -70,7 +70,6 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw new System.Exception("Błąd odczytu listy commit'ów GIT'a\ncommit:\n\n" + ex.ToString());
                 }
             foreach (KeyValuePair<string, PolaListyComitow> l in _lista.OrderBy(l => l.Value.Data))
@@ -105,7 +104,6 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
                 catch (Exception ex)
                 {
-                    // MessageBox.Show("Błąd odczytu listy branches\n\n" + ex.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     throw new System.Exception("Błąd odczytu listy branches\n\n" + ex.ToString());
                 }
 
@@ -114,37 +112,29 @@ namespace Soneta.Examples.Zadanie1.Extender
         public void FiltrCommitowNaDzien()
         {
             ListaPelna = false;
-            //var c = from l in _ListCommits
-            //        group l by new { l.Value.Autor, l.Value.Data }
-            //        into grupa
-            //        select grupa.FirstOrDefault();
 
             var c = from l in _ListCommits
-                        //group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
                     group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
                     into g
                     select g.FirstOrDefault();
 
-
-
             SortedDictionary<string, PolaListyComitow> _listtmp = new SortedDictionary<string, PolaListyComitow>();
-            //foreach (KeyValuePair<string, PolaListyComitow> l in _ListCommits.Where(c => c.Value.Autor == Autor))
             foreach (KeyValuePair<string, PolaListyComitow> l in c)
             {
                 l.Value.Ilosc = _ListCommits.Where(w => w.Value.Branche == l.Value.Branche & w.Value.Autor == l.Value.Autor & w.Value.Data == l.Value.Data).Count();
                 _listtmp.Add(l.Key, l.Value);
             }
-            //MessageBox.Show("_listtmp\n\n" + _listtmp.Count.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             _ListCommits.Clear();
-            //MessageBox.Show("_ListCommits.Clear()\n\n" + _listtmp.Count.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             foreach (KeyValuePair<string, PolaListyComitow> l in _listtmp)
             {
                 _ListCommits.Add(l.Key, l.Value);
             }
         }
+
         public void FiltrSrednioCommitowDziennie()
         {
             ListaPelna = false;
+
             var c = from l in _ListCommits
                     group l by new { l.Value.Branche, l.Value.Autor } into g
                     select g.FirstOrDefault();
