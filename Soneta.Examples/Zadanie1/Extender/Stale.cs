@@ -14,7 +14,7 @@ namespace Soneta.Examples.Zadanie1.Extender
     public partial class Zadanie1
     {
         // Katalog GIT'a
-        const string GitWorkDir = @"C:\Users\wojtek\source\repos\enova365\Examples";
+        const string GitWorkDir = @"C:\Users\wojtek\source\repos\enova365_testy\Examples";
         // Pobranie listy commitów
         const string GitGetCommits = "git log HEAD --stat --date=format:\"%Y-%m-%d %H:%M:%S\"";
         //Lista gałęzi    * aktywna

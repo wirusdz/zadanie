@@ -14,7 +14,7 @@ namespace Soneta.Examples.Zadanie1.Extender
         public string Autor { get; set; }
         public DateTime Data { get; set; }
         public string Opis { get; set; }
-        public int Ilosc { get; set; }
+        public decimal Ilosc { get; set; }
     }
     public class PolaListyBranches
     {

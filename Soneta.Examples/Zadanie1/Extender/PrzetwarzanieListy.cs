@@ -55,7 +55,7 @@ namespace Soneta.Examples.Zadanie1.Extender
                     }
                     if (s.Contains("Date:") & s[0] == 'D')
                     {
-                        _lista[_commit].Data = DateTime.ParseExact(s.Replace("Date:", string.Empty).TrimStart(), "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                        _lista[_commit].Data = DateTime.ParseExact(s.Replace("Date:", string.Empty).TrimStart(), "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture).Date;
                         continue;
                     }
                     if (s.Contains("Merge pull request"))
@@ -80,8 +80,6 @@ namespace Soneta.Examples.Zadanie1.Extender
         }
         public List<PolaListyBranches> GetBranches(string _text)
         {
-            MessageBox.Show("Wartość _text:\n" + _text, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             List<PolaListyBranches> _lista = new List<PolaListyBranches>();
 
             string _nazwa;
@@ -99,7 +97,6 @@ namespace Soneta.Examples.Zadanie1.Extender
                     {
                         _nazwa = s.Trim();
                     }
-                    MessageBox.Show("Br aktywny " + _aktywny.ToString() + " | nazwa " + _nazwa, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _lista.Add(new PolaListyBranches()
                     {
                         Aktywny = _aktywny,
@@ -114,8 +111,9 @@ namespace Soneta.Examples.Zadanie1.Extender
 
             return _lista;
         }
-        public void FiltrAutorList(string Autor)
+        public void FiltrCommitowNaDzien()
         {
+            ListaPelna = false;
             //var c = from l in _ListCommits
             //        group l by new { l.Value.Autor, l.Value.Data }
             //        into grupa
@@ -123,7 +121,7 @@ namespace Soneta.Examples.Zadanie1.Extender
 
             var c = from l in _ListCommits
                         //group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
-                    group l by new { l.Value.Autor, l.Value.Data }
+                    group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data }
                     into g
                     select g.FirstOrDefault();
 
@@ -133,7 +131,7 @@ namespace Soneta.Examples.Zadanie1.Extender
             //foreach (KeyValuePair<string, PolaListyComitow> l in _ListCommits.Where(c => c.Value.Autor == Autor))
             foreach (KeyValuePair<string, PolaListyComitow> l in c)
             {
-                l.Value.Ilosc = _ListCommits.Where(w => w.Value.Autor == l.Value.Autor & w.Value.Data == l.Value.Data).Count();
+                l.Value.Ilosc = _ListCommits.Where(w => w.Value.Branche == l.Value.Branche & w.Value.Autor == l.Value.Autor & w.Value.Data == l.Value.Data).Count();
                 _listtmp.Add(l.Key, l.Value);
             }
             //MessageBox.Show("_listtmp\n\n" + _listtmp.Count.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -143,6 +141,33 @@ namespace Soneta.Examples.Zadanie1.Extender
             {
                 _ListCommits.Add(l.Key, l.Value);
             }
+        }
+        public void FiltrSrednioCommitowDziennie()
+        {
+            ListaPelna = false;
+            var c = from l in _ListCommits
+                    group l by new { l.Value.Branche, l.Value.Autor } into g
+                    select g.FirstOrDefault();
+
+            var _IloscDni = from l in _ListCommits
+                            group l by new { l.Value.Branche, l.Value.Autor, l.Value.Data } into g
+                            select g.FirstOrDefault();
+
+            SortedDictionary<string, PolaListyComitow> _listtmp = new SortedDictionary<string, PolaListyComitow>();
+            foreach (KeyValuePair<string, PolaListyComitow> l in c)
+            {
+                decimal _IloscCommitow = _ListCommits.Where(w => w.Value.Branche == l.Value.Branche & w.Value.Autor == l.Value.Autor).Count();
+                decimal _LpDni = _IloscDni.Where(w => w.Value.Branche == l.Value.Branche & w.Value.Autor == l.Value.Autor).Count();
+                // średnia arytmetyczna
+                l.Value.Ilosc = _IloscCommitow / _LpDni;
+                _listtmp.Add(l.Key, l.Value);
+            }
+            _ListCommits.Clear();
+            foreach (KeyValuePair<string, PolaListyComitow> l in _listtmp)
+            {
+                _ListCommits.Add(l.Key, l.Value);
+            }
+
         }
     }
 }

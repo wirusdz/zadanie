@@ -29,14 +29,28 @@ namespace Soneta.Examples.Zadanie1.Extender
                 }
             };
         }
-        public MessageBoxInformation LoadCommitsWhere()
+        public MessageBoxInformation CommitowNaDzien()
         {
             return new MessageBoxInformation(Strings.St_MsgTitleZadanie, Strings.St_MsgTextZadanie)
             {
                 YesHandler = () =>
                 {
                     //_ListCommits.Clear();
-                    FiltrAutorList("wdziedzic");
+                    FiltrCommitowNaDzien();
+                    // Wymuszamy odświeżenie listy 
+                    Context.Session.InvokeChanged();
+                    return null;
+                }
+            };
+        }
+        public MessageBoxInformation SrednioCommitowDziennie()
+        {
+            return new MessageBoxInformation(Strings.St_MsgTitleZadanie, Strings.St_MsgTextZadanie)
+            {
+                YesHandler = () =>
+                {
+                    //_ListCommits.Clear();
+                    FiltrSrednioCommitowDziennie();
                     // Wymuszamy odświeżenie listy 
                     Context.Session.InvokeChanged();
                     return null;

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Soneta.Business;
-using System.Windows.Forms;
 using Soneta.Examples.Zadanie1.Extender;
-//using Soneta.Examples.Example3.Extender;
 
 namespace Soneta.Examples.Zadanie1.Extender
 {
@@ -16,32 +14,19 @@ namespace Soneta.Examples.Zadanie1.Extender
         [Context(Required = true)]
         public Session Session { get; set; }
 
-        #region Widoczność zakładki
-
-        /// <summary>
-        /// Metoda pozwalająca na sterowanie widocznościa zakładki.
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns>
-        ///     true - widoczność zakładki, 
-        ///     false - zakładka niewidoczna
-        /// </returns>
-        public static bool IsVisible(Context context)
-        {
-            //bool result;
-            //using (var session = context.Login.CreateSession(true, true))
-            //{
-            //    result = CfgWalutyNbpExtender.GetValue(session, "AktywneKursyNbp", false);
-            //}
-            return true;
-        }
-
-        #endregion Widoczność zakładki
+        private bool ListaPelna = true;
 
         #region Property dla formularza
 
         private SortedDictionary<string, PolaListyComitow> _ListCommits = new SortedDictionary<string, PolaListyComitow>();
 
+        public bool IsLista
+        {
+            get
+            {
+                return ListaPelna;
+            }
+        }
         public IEnumerable<PolaListyComitow> ListaComitow
         {
             get
@@ -61,7 +46,6 @@ namespace Soneta.Examples.Zadanie1.Extender
                 _akt.Aktywny = '\0';
                 foreach (PolaListyBranches br in GetBranches(RunGitCommand(GitGetBranches)))
                 {
-                    MessageBox.Show("Aktywny " + br.Aktywny.ToString()+"\nBranche "+br.Branche, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (br.Aktywny != '*') RunGitCommand(GitSetBranche + br.Branche);
                     LoadList(br.Aktywny, br.Branche, RunGitCommand(GitGetCommits));
                     if (br.Aktywny == '*') _akt.Branche = br.Branche;
@@ -69,10 +53,12 @@ namespace Soneta.Examples.Zadanie1.Extender
             }
             catch (Exception ex)
             {
+                ListaPelna = false;
                 throw new System.Exception(ex.ToString());
             }
             finally
             {
+                ListaPelna = true;
                 //RunGitCommand(GitReset);
                 RunGitCommand(GitSetBranche + _akt.Branche);
             }

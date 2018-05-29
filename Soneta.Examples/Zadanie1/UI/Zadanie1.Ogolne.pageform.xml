@@ -17,16 +17,13 @@
 				</Stack>
 				<Stack Width="*">
 					<Command CaptionHtml="Załaduj commit's" MethodName="LoadCommits"/>
-					<Command CaptionHtml="Filtruj autora" MethodName="LoadCommitsWhere"/>
-					<Command CaptionHtml="Pobierz xml" MethodName="PobierzXml"/>
-				</Stack>
-				<Stack Width="*">
-					<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}" IsReadOnly="false"/>
+					<Command CaptionHtml="Ilość commitów na dzień" MethodName="CommitowNaDzien" Visibility="{IsLista}"/>
+					<Command CaptionHtml="Średnia ilość commitów dziennie" MethodName="SrednioCommitowDziennie" Visibility="{IsLista}"/>
 				</Stack>
 			</Row>
 		</Group>
 		<Group CaptionHtml="Zadanie rekrutacyjne">
-			<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}"/>
+			<Field CaptionHtml="Lokalizacja repozytorium" LabelWidth="30" Width="60" EditValue="{GitWorkDir}" IsReadOnly="false"/>
 		</Group>
 	</Page>
 </DataForm>
