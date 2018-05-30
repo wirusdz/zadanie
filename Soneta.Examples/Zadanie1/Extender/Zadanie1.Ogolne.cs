@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Soneta.Business;
-using Soneta.Examples.Zadanie1.Extender;
 
 namespace Soneta.Examples.Zadanie1.Extender
 {
@@ -17,7 +16,7 @@ namespace Soneta.Examples.Zadanie1.Extender
         private bool _ListaPelna = false;
         private bool _WszystkiePola = true;
 
-        private string _GitWorkDir = @"C:\Users\wojtek\source\repos\enova365_testy\Examples";
+        private string _GitWorkDir = string.Empty;
 
         #region Property dla formularza
 
@@ -35,7 +34,7 @@ namespace Soneta.Examples.Zadanie1.Extender
         {
             get
             {
-                return _GitWorkDir;
+                return (_GitWorkDir == string.Empty) ? GitWorkDir : _GitWorkDir;
             }
             set
             {

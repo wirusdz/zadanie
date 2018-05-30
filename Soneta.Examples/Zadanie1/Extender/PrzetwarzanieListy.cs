@@ -1,14 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
-using Soneta.Business;
-using Soneta.Business.UI;
-using Soneta.Examples.Zadanie1.Extender;
-using Soneta.Examples.Example3.Extender;
-using Soneta.Tools;
+
 
 namespace Soneta.Examples.Zadanie1.Extender
 {
